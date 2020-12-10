@@ -20,6 +20,7 @@ import java.util.Set;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -46,6 +47,19 @@ public class RestEstudiantes {
 		ServicioEstudiante servicio = new ServicioEstudiante();
 		try {
 			servicio.insertarEstudiante(estudiante);
+			System.out.println(estudiante.toString());
+		} catch (BDDException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@PUT
+	@Path("/actualizar")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void actualizar(Estudiante estudiante) throws IOException {
+		ServicioEstudiante servicio = new ServicioEstudiante();
+		try {
+			servicio.actualizarEstudiante(estudiante);
 			System.out.println(estudiante.toString());
 		} catch (BDDException e) {
 			e.printStackTrace();
